@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { IssuesComponent } from './components/issues/issues.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    IssuesComponent
   ],
   imports: [
     BrowserModule,
