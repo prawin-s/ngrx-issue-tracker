@@ -7,11 +7,13 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { IssuesComponent } from './components/issues/issues.component';
+import { NewIssueComponent } from './components/new-issue/new-issue.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IssuesComponent
+    IssuesComponent,
+    NewIssueComponent
   ],
   imports: [
     BrowserModule,
