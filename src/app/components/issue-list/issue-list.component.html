@@ -1,0 +1,10 @@
+<input placeholder="Search ..." #searchInput type="text" (input)="search(searchInput.value)" />
+<ul>
+  <li *ngFor="let issue of issues$ | async">
+    <h2>
+      {{issue.title}}
+      <small>{{ issue.priority}}</small>
+    </h2>
+    <p>{{issue.description}}</p>
+  </li>
+</ul>

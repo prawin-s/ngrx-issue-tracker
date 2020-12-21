@@ -11,7 +11,6 @@ export interface Filter {
 export interface IssueState {
     entities: Issues;
     filter: Filter;
-
 }
 
 export const initialState: IssueState = {

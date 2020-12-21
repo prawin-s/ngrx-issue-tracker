@@ -9,16 +9,20 @@ import { environment } from '../environments/environment';
 import { IssuesComponent } from './components/issues/issues.component';
 import { NewIssueComponent } from './components/new-issue/new-issue.component';
 import { reducers, metaReducers } from './store';
+import { IssueListComponent } from './components/issue-list/issue-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     IssuesComponent,
-    NewIssueComponent
+    NewIssueComponent,
+    IssueListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],

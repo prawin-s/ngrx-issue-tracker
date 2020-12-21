@@ -27,16 +27,23 @@ export const reducer = createReducer(
                 resolved: false,
             };
         })
-    )
+    ),
+    on(IssueActions.search, (state, { text }) => ({
+        ...state,
+        filter: {
+            ...state.filter,
+            text,
+        },
+    }))
 );
 
-//export const issueReducer = loggingMetaReducer(reducer);
+export const issueReducer = loggingMetaReducer(reducer);
 
-export const issueReducer = (state: IssueState, action: Action): IssueState => {
-    try {
-        return reducer(state, action);
-    } catch (error) {
-        console.error(error);
-        return state;
-    }
-};
+// export const issueReducer = (state: IssueState, action: Action): IssueState => {
+//     try {
+//         return reducer(state, action);
+//     } catch (error) {
+//         console.error(error);
+//         return state;
+//     }
+// };

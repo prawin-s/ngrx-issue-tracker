@@ -8,7 +8,7 @@ export interface RootState {
 }
 
 export const reducers: ActionReducerMap<RootState> = {
-    issue: issueReducer,
+    issue: issueReducer
 };
 
 export const metaReducers: MetaReducer[] = [

@@ -7,14 +7,14 @@ import { randomId } from "src/app/util";
 //     props<{ issue: Issue }>()
 // )
 
-export const submit = createAction(
-    '[Issue] Submit',
-    (issue: Issue) => {
-        return {
-            issue: {
-                ...issue,
-                id: randomId(),
-            },
-        };
-    }
+export const submit = createAction('[Issue] Submit', (issue: Issue) => {
+    return {
+        issue: {
+            ...issue,
+            id: randomId(),
+        },
+    };
+}
 );
+
+export const search = createAction('[Issue] Search', props<{ text: string }>());
