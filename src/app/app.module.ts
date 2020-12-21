@@ -8,6 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { IssuesComponent } from './components/issues/issues.component';
 import { NewIssueComponent } from './components/new-issue/new-issue.component';
+import { reducers, metaReducers } from './store';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { NewIssueComponent } from './components/new-issue/new-issue.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],

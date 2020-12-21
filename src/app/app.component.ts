@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { reset } from './store/meta-reducers';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ngrx-issue-tracker';
+  constructor(private store: Store) { }
+
+  reset(): void {
+    this.store.dispatch(reset());
+  }
 }
