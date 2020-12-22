@@ -11,13 +11,15 @@ import { NewIssueComponent } from './components/new-issue/new-issue.component';
 import { reducers, metaReducers } from './store';
 import { IssueListComponent } from './components/issue-list/issue-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IssueDetailComponent } from './components/issue-detail/issue-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IssuesComponent,
     NewIssueComponent,
-    IssueListComponent
+    IssueListComponent,
+    IssueDetailComponent
   ],
   imports: [
     BrowserModule,
