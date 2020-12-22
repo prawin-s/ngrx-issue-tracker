@@ -6,5 +6,8 @@
       <small>{{ issue.priority}}</small>
     </h3>
     <p>{{issue.description}}</p>
+    <button (click)="resolve(issue)" [disabled]="issue.resolved">
+      {{ issue.resolved ? "Resolved" : "Resolve" }}
+    </button>
   </li>
 </ul>

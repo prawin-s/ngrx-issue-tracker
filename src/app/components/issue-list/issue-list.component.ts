@@ -16,14 +16,19 @@ export class IssueListComponent implements OnInit {
   issues$: Observable<Issue[]>;
 
   constructor(private store: Store<RootState>) {
-    this.issues$ = this.store.select(fromIssue.selectAll);
+    this.issues$ = this.store.select(fromIssue.selectFiltered);
   }
 
   ngOnInit(): void {
   }
 
   search(text: string): void {
+    debugger;
     this.store.dispatch(IssueActions.search({ text }));
+  }
+
+  resolve(issue: Issue): void {
+    this.store.dispatch(IssueActions.resolve({ issueId: issue.id }));
   }
 
 }
