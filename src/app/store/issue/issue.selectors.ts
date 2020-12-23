@@ -29,6 +29,7 @@ export const selectFiltered = createSelector(
     selectFilter,
     (issues: Issue[], { text }: Filter) => {
         if (text) {
+            debugger;
             const lowercased = text.toLowerCase();
             return issues.filter(
                 ({ title, description }) =>
