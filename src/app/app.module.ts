@@ -13,6 +13,8 @@ import { IssueListComponent } from './components/issue-list/issue-list.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { IssueDetailComponent } from './components/issue-detail/issue-detail.component';
 import { EffectsModule } from '@ngrx/effects';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DatabaseService } from './services/database.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { EffectsModule } from '@ngrx/effects';
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    InMemoryWebApiModule.forRoot(DatabaseService),
   ],
   providers: [],
   bootstrap: [AppComponent]
