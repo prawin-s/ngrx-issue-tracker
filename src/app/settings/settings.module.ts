@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings.component';
 import { StoreModule } from '@ngrx/store';
-import { settingsFeatureKey } from './store/settings.state';
-import { settingsReducer } from './store/settings.reducer';
+import { settingsFeatureKey, settingsReducers } from './store';
 
 
 @NgModule({
@@ -13,7 +12,7 @@ import { settingsReducer } from './store/settings.reducer';
   imports: [
     CommonModule,
     SettingsRoutingModule,
-    StoreModule.forFeature(settingsFeatureKey, settingsReducer),
+    StoreModule.forFeature(settingsFeatureKey, settingsReducers),
   ]
 })
 export class SettingsModule { }

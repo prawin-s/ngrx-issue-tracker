@@ -12,6 +12,7 @@ import { reducers, metaReducers } from './store';
 import { IssueListComponent } from './components/issue-list/issue-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IssueDetailComponent } from './components/issue-detail/issue-detail.component';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { IssueDetailComponent } from './components/issue-detail/issue-detail.com
     AppRoutingModule,
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
