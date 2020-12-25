@@ -23,7 +23,6 @@ export class IssueListComponent implements OnInit {
   }
 
   search(text: string): void {
-    debugger;
     this.store.dispatch(IssueActions.search({ text }));
   }
 

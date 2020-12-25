@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { initialState, IssueState } from './issue.state';
+import { initialState, Issues, IssueState } from './issue.state';
 import * as IssueActions from './issue.actions';
 import { loggingMetaReducer } from '../meta-reducers';
 import produce from 'immer';
@@ -7,27 +7,20 @@ import produce from 'immer';
 
 export const reducer = createReducer(
     initialState,
-    // on(IssueActions.submit, (state, { issue }) => (
-    //     {
-    //         ...state,
-    //         entities: {
-    //             ...state.entities,
-    //             [issue.id]: {
-    //                 ...issue,
-    //                 resolved: false
-    //             }
-    //         }
-    //     }
-
-    // ))
-    on(IssueActions.submit, (state, { issue }) =>
+    on(IssueActions.submit, (state) => ({
+        ...state,
+        loading: true,
+    })),
+    on(IssueActions.submitSuccess, (state, { issue }) =>
         produce(state, (draft) => {
-            draft.entities[issue.id] = {
-                ...issue,
-                resolved: false,
-            };
+            draft.entities[issue.id] = issue;
+            draft.loading = false;
         })
     ),
+    on(IssueActions.submitFailure, (state) => ({
+        ...state,
+        loading: false,
+    })),
     on(IssueActions.search, (state, { text }) => ({
         ...state,
         filter: {
@@ -46,10 +39,31 @@ export const reducer = createReducer(
                     resolved: true,
                 },
             },
-        }
+        };
+    }),
+    on(IssueActions.resolveFailure, (state, { issueId }) => {
+        const issue = state.entities[issueId];
+        return {
+            ...state,
+            entities: {
+                ...state.entities,
+                [issueId]: {
+                    ...issue,
+                    resolved: false,
+                },
+            },
+        };
+    }),
+    on(IssueActions.loadSuccess, (state, { issues }) => {
+        const entities: Issues = {};
+        issues.forEach((issue) => (entities[issue.id] = issue));
+        return {
+            ...state,
+            entities,
+            loaded: true,
+        };
     })
 );
-
 export const issueReducer = loggingMetaReducer(reducer);
 
 // export const issueReducer = (state: IssueState, action: Action): IssueState => {

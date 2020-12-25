@@ -28,7 +28,7 @@ export class NewIssueComponent implements OnInit {
 
   submit(): void {
     const issue = this.form.value;
-    this.store.dispatch(IssueActions.submit(issue));
+    this.store.dispatch(IssueActions.submit({ issue }));
   }
 
 }
