@@ -30,4 +30,8 @@ export class IssueListComponent implements OnInit {
     this.store.dispatch(IssueActions.resolve({ issueId: issue.id }));
   }
 
+  trackByIssues(index: number, issue: Issue): string {
+    return issue.id;
+  }
+
 }

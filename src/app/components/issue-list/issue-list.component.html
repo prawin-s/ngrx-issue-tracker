@@ -1,6 +1,6 @@
 <input placeholder="Search ..." #searchInput type="text" (input)="search(searchInput.value)" />
 <ul>
-  <li *ngFor="let issue of issues$ | async">
+  <li *ngFor="let issue of issues$ | async; trackBy: trackByIssues">
     <h3>
       <a [routerLink]="issue.id"> {{issue.title}}</a>
       <small>{{ issue.priority}}</small>
