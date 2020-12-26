@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { RootState } from '../../store';
-import * as IssueActions from '../../store/issue/issue.actions';
+import { Issue } from 'src/app/models/issue';
 
 @Component({
   selector: 'app-new-issue',
@@ -11,8 +9,9 @@ import * as IssueActions from '../../store/issue/issue.actions';
 })
 export class NewIssueComponent implements OnInit {
   form: FormGroup;
+  @Output() submitNew = new EventEmitter<Issue>();
 
-  constructor(private store: Store<RootState>, private fb: FormBuilder) {
+  constructor(private fb: FormBuilder) {
     this.form = this.fb.group(
       {
         title: ['', Validators.required],
@@ -26,9 +25,9 @@ export class NewIssueComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submit(): void {
+  onSubmit(): void {
     const issue = this.form.value;
-    this.store.dispatch(IssueActions.submit({ issue }));
+    this.submitNew.emit(issue);
   }
 
 }

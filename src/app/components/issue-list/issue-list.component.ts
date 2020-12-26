@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Issue } from 'src/app/models/issue';
@@ -12,24 +12,23 @@ import * as IssueActions from '../../store/issue/issue.actions';
   styleUrls: ['./issue-list.component.scss']
 })
 export class IssueListComponent implements OnInit {
+  @Input() issues: Issue[] = [];
+  @Output() search = new EventEmitter<string>();
+  @Output() resolve = new EventEmitter<Issue>();
 
-  issues$: Observable<Issue[]>;
-
-  constructor(private store: Store<RootState>) {
-    this.issues$ = this.store.select(fromIssue.selectFiltered);
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  search(text: string): void {
-    this.store.dispatch(IssueActions.search({ text }));
+  onSearch(text: string): void {
+    this.search.emit(text);
   }
 
-  resolve(issue: Issue): void {
-    this.store.dispatch(IssueActions.resolve({ issueId: issue.id }));
+  onResolve(issue: Issue): void {
+    this.resolve.emit(issue);
   }
-
+  
   trackByIssues(index: number, issue: Issue): string {
     return issue.id;
   }
